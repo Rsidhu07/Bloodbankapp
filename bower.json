@@ -1,0 +1,21 @@
+{
+  "name": "bloodbankapp",
+  "authors": [
+    "rsidhu07 <rajsidhuh07@gmail.com>"
+  ],
+  "description": "this is a blood bank app.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.7.5",
+    "bootstrap": "^4.1.3"
+  }
+}
