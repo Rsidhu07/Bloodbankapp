@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">Total bottles available:</label>
-                        <input ng-model="item.bcount" type="text" placeholder="Total bottles available" class="form-control">
+                        <input ng-model="item.bcount" type="range" class="form-control" min="1" step="1" max="20" class="form-control"> {{item.bcount}}
                     </div>
                     <div class="form-group">
                         <button ng-click="add()" class="btn btn-primary">Add</button>
