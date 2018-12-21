@@ -6,16 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blood Bank App</title>
-    <script src="/bloodbankapp/js/app.js"></script>
-    <script src="/bloodbankapp/bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
-    <script src="/bloodbankapp/js/app.js"></script>
-    <script src="/bloodbankapp/js/controller.js"></script>
-    <script src="/bloodbankapp/js/factory.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/item.js"></script>
+    <script src="/js/controller.js"></script>
+    <script src="/js/factory.js"></script>
     
 </head>
 
 <body ng-app="blbankapp">
+
     <div ng-controller="myctrl">
+
+            <div class="container">
+                 <h1 class="alert-success">Blood Bank Application</h1>
+                    <div class="form-group">
+                        <label for="">Blood group name:</label>
+                        <input ng-model="item.bname" type="text" placeholder="Type Blood group name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Total bottles available:</label>
+                        <input ng-model="item.bcount" type="text" placeholder="Total bottles available" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button ng-click="add()" class="btn btn-primary">Add</button>
+                        <button class="btn btn-danger">Delete</button>
+                        <button class="btn btn-default">Clear All</button>
+                    </div>
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Blood group name</th>
+                                <th>Total bottles available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td>{{item.bname}}</td>
+                                <td>{{item.bcount}}</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+            
+                </div>
+
         
     </div>
 </body>
