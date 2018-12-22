@@ -6,54 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blood Bank App</title>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
     <script src="/bower_components/angular/angular.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/item.js"></script>
     <script src="/js/controller.js"></script>
     <script src="/js/factory.js"></script>
-    
+
 </head>
 
 <body ng-app="blbankapp">
 
     <div ng-controller="myctrl">
 
-            <div class="container">
-                 <h1 class="alert-success">Blood Bank Application</h1>
-                    <div class="form-group">
-                        <label for="">Blood group name:</label>
-                        <input ng-model="item.bname" type="text" placeholder="Type Blood group name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Total bottles available:</label>
-                        <input ng-model="item.bcount" type="range" class="form-control" min="1" step="1" max="20" class="form-control"> {{item.bcount}}
-                    </div>
-                    <div class="form-group">
-                        <button ng-click="add()" class="btn btn-primary">Add</button>
-                        <button class="btn btn-danger">Delete</button>
-                        <button class="btn btn-default">Clear All</button>
-                    </div>
-                    <table class="table table-striped table-bordered table-hover">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Blood group name</th>
-                                <th>Total bottles available</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="item in items">
-                                <td>{{item.bname}}</td>
-                                <td>{{item.bcount}}</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-            
-                </div>
+        <div class="container">
+            <h1 class="alert-success">Blood Bank Application</h1>
+            <div class="form-group">
+                <label for="">Blood group name:</label>
+                <input ng-model="item.bname" type="text" placeholder="Type Blood group name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Total bottles available:</label>
+                <input ng-model="item.bcount" type="range" class="form-control" min="1" step="1" max="20" class="form-control">
+                {{item.bcount}}
+            </div>
+            <div class="form-group">
+                <button ng-click="add()" class="btn btn-primary">Add</button>
+                <!-- <button class="btn btn-danger">Delete</button> -->
+                <button ng-click="deleteAll()" class="btn btn-default">Clear All</button>
+            </div>
 
-        
+            <div ng-repeat="item in items">
+                <div class="bloodCard row">
+                    <div class="bloodName" ng-class="item.color">{{item.bname}}</div>
+                    <div class="bloodCount">{{item.bcount}}</div>
+                </div>
+            </div>
+
+            <!-- Requirement form starts -->
+            <span class="h4">Requirement form</span><br />
+            <span>Blood required</span>
+            <select ng-model="selectedBloodGroup" ng-options="bname as bname for (bname,item) in bloodGroupToReceiverBloodsMap" ng-change="selectBloodGroup()">
+            </select>
+            <br/>
+            <span>Bottles Required</span>
+            <input ng-model="requiredBloodBottles" type="number">
+        </div>
+
+        <div>
+            <div class="square">Blood Bucket</div>
+
+        </div>
+
     </div>
 </body>
 
