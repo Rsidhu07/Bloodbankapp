@@ -4,6 +4,7 @@ app.controller("myctrl", ($scope, myfactory) => {
     $scope.items = {};
     $scope.selectedBloodGroup = "";
     $scope.requiredBloodBottles = "";
+    $scope.draggedItems = {};
     $scope.add = () => {
         //console.log("Add ",scope.item);
         var items = myfactory.add($scope.item, $scope.bloodGroupToReceiverBloodsMap);
@@ -13,6 +14,8 @@ app.controller("myctrl", ($scope, myfactory) => {
     $scope.deleteAll = () => {
         $scope.items = myfactory.deleteAll();
     }
+
+
 
     let bloodGroupToReceiverBloodsMap = {};
     bloodGroupToReceiverBloodsMap['A+'] = ['A+', 'A-', 'O+', 'O-'];
@@ -47,4 +50,28 @@ app.controller("myctrl", ($scope, myfactory) => {
             }
         }
     }
-})
+    $scope.onDrop = function () {
+        return function (event, dropzone, draggable, data) {
+            if (data.color == 'grey') {
+                alert("lol, try again!");
+                return;
+            }
+        
+
+            // console.log('Element has been dropped into the dropzone!');
+            let cloneElem = draggable.clone();
+            dropzone.append(cloneElem);
+            $scope.$apply(function () {
+                if(data.color=='lightgreen'){
+                    $scope.items[data.bname].bcount -= data.bcount;
+                }
+                else{ 
+                    $scope.items[data.bname].bcount -= $scope.requiredBloodBottles;
+                }
+                // console.log('boom; ' + status);
+                //$scope.items[data.bname].bcount -= data.bcount
+            });
+
+        }
+    };
+});

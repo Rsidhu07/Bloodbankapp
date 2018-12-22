@@ -15,7 +15,7 @@
     <script src="/js/item.js"></script>
     <script src="/js/controller.js"></script>
     <script src="/js/factory.js"></script>
-
+    <script src="bower_components/ng-html5dragdrop/dist/ng-html5dragdrop.min.js"></script>
 </head>
 
 <body ng-app="blbankapp">
@@ -38,28 +38,37 @@
                 <!-- <button class="btn btn-danger">Delete</button> -->
                 <button ng-click="deleteAll()" class="btn btn-default">Clear All</button>
             </div>
-
-            <div ng-repeat="item in items">
-                <div class="bloodCard row">
-                    <div class="bloodName" ng-class="item.color">{{item.bname}}</div>
-                    <div class="bloodCount">{{item.bcount}}</div>
+            <div>
+                <div ng-repeat="item in items">
+                    <div html5-drag drag-data="item" class="bloodCard row">
+                        <div class="bloodName" ng-class="item.color">{{item.bname}}</div>
+                        <div class="bloodCount">{{item.bcount}}</div>
+                    </div>
                 </div>
             </div>
-
             <!-- Requirement form starts -->
             <span class="h4">Requirement form</span><br />
             <span>Blood required</span>
-            <select ng-model="selectedBloodGroup" ng-options="bname as bname for (bname,item) in bloodGroupToReceiverBloodsMap" ng-change="selectBloodGroup()">
+            <select ng-model="selectedBloodGroup" ng-options="bname as bname for (bname,item) in bloodGroupToReceiverBloodsMap"
+                ng-change="selectBloodGroup()">
             </select>
-            <br/>
+            <br />
             <span>Bottles Required</span>
             <input ng-model="requiredBloodBottles" type="number" ng-change="selectBloodGroup()">
+            <!-- <div html5-drop on-drop="onDrop()"> -->
+                <div html5-drop on-drop="onDrop()" class="square">
+                    <!-- <div ng-repeat="item1 in draggedItems" ng-model="draggedItems"> -->
+                        <!-- <div class="bloodCard row">
+                            <div class="bloodName" ng-class="item1.color">{{draggedItems}}</div>
+                            <div class="bloodCount">{{item1.bcount}}</div>
+                        </div> -->
+                    <!-- </div> -->
+
+                <!-- </div> -->
+
+            </div>
         </div>
 
-        <div>
-            <div class="square"></div>
-
-        </div>
 
     </div>
 </body>

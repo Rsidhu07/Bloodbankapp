@@ -1,1 +1,1 @@
-const app = angular.module("blbankapp",[]);
+const app = angular.module("blbankapp",['html5DragDrop']);
